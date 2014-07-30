@@ -35,13 +35,21 @@ class Vehicle
   def price
     @price
   end
+
+  def Vehicle.list
+    @@warehouse.each do |car|
+      puts "#{car.make} #{car.model}"
+    end
+  end
+
 end
 
 toyota_prius = Vehicle.new("Toyota", "Prius", "2014", 23999)
 chevy_camaro = Vehicle.new("Chevrolet", "Camaro", "2014", 45000)
 mini_cooper = Vehicle.new("Cooper", "Mini", "2013", 25000)
 
-p Vehicle.warehouse[0]
+# puts Vehicle.list[1]
+# p Vehicle.warehouse[0].make
 # p "#{warehouse[0].make} #{warehouse[0].model}"
 # p "#{warehouse[1].make} #{warehouse[1].model}"
 
