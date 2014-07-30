@@ -1,4 +1,5 @@
 require './lib/car_store'
+require './lib/car_options'
 
 def car_salesman
   loop do

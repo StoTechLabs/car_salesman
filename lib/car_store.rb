@@ -1,7 +1,3 @@
-
-
-
-
 class Vehicle
   @@warehouse = [] #class variable
   def initialize(make, model, year, price)
@@ -35,14 +31,9 @@ class Vehicle
   def price
     @price
   end
-
-  def Vehicle.list
-    @@warehouse.each do |car|
-      puts "#{car.make} #{car.model}"
-    end
-  end
-
 end
+
+
 
 toyota_prius = Vehicle.new("Toyota", "Prius", "2014", 23999)
 chevy_camaro = Vehicle.new("Chevrolet", "Camaro", "2014", 45000)
