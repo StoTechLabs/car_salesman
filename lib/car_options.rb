@@ -27,14 +27,20 @@ class Options
     @price
   end
 
-  def find_by_name(input)
-    Options.catalog.each do |option|
-      if input == option.name
-        return option
+  def Options.find_by_name(input)
+    Options.catalog.each do |i|
+      if input == i.name
+        @found_item = i.name
+        return i
       end
     end
     false
   end
+
+  def Options.delete(input)
+    Options.catalog.delete(input)
+  end
+
 end
 
 rims = Options.new("Rims", 1000) #instance of the class of Options

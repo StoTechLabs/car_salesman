@@ -1,5 +1,8 @@
 require './lib/car_store'
 require './lib/car_options'
+require 'pry'
+
+@your_options = ""
 
 def car_salesman
   loop do
@@ -34,7 +37,7 @@ def vehicleSearch
       puts "Price: #{car.price}"
       puts "\n"
       @your_price = car.price
-      optionsList
+      addOptions
     else
       puts "Sorry, we don't have that model. Come back now ya here!"
       car_salesman
@@ -43,7 +46,7 @@ def vehicleSearch
 end
 
 
-def optionsList
+def addOptions
   puts "The #{@user_input} has the following options:\n"
 
   Options.catalog.each do |option|
@@ -54,46 +57,35 @@ def optionsList
   puts "Type 'x' if you would like to decline these"
 
   @user_option_input = gets.chomp
-  option = Options.find_by_name(@user_option_input)
-  @your_price += option.price
 
   if @user_option_input == 'x'
     finalOutput
   end
-  optionsAdd
-end
 
+  option = Options.find_by_name(@user_option_input)
+  if option == false
+    puts "Sorry we don't have that. Please try again"
+    addOptions
+  else
+    @your_price += option.price
+    @your_options += "#{option.name} & "
 
-def optionsAdd
-  ###############
-  # option_index = option.catalog.index
-      # puts option_index
-      puts "Your current price is #{@your_price}"
-      # Options.catalog.delete_at(option)
-
-    elsif @user_option_input != "#{option.name}"
-      puts" Sorry we don't have that. Please try again"
-      optionsList
-
-  puts "Would you like to add another option? Type 'yes' or 'no'."
-  @user_option_input = gets.chomp
-  p @user_option_input
-  if @user_option_input == 'yes'
-    optionsList
-  elsif @user_option_input != 'yes'
+    Options.delete(option)
+    puts "Would you like to add another option? Type 'y' to see the add-ons list again"
+    @user_option_input = gets.chomp
+    if @user_option_input == 'y'
+      addOptions
+    else
+      finalOutput
+    end
   end
-  finalOutput
 end
-
 
 def finalOutput
-
-
-  puts "Thanks for comin by Dick Butt's Auto Emporium."
-  puts "We hope you enjoy your new #{user_input}! Have a great day!"
-  car_salesman
+  @your_options.chop!.chop!.chop!
+  puts "Alright, your #{@user_input} with #{@your_options} will cost #{@your_price}."
+  puts "Thanks for comin-by ol' Dick Butt's Auto Emporium. We hope you enjoy your new car!"
+  exit
 end
-
-# p "#{Vehicle.warehouse[2].make} #{Vehicle.warehouse[2].model}"
 
 car_salesman

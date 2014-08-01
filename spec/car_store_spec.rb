@@ -45,12 +45,19 @@ describe Options do
 
   it 'finds the option in the catalog that is selected and returns that option' do
     test_options = Options.new("Rims", 1000)
-    test_options.find_by_name("Rims").should eq test_options
+    Options.find_by_name("Rims").should eq test_options
   end
 
   it 'finds the option in the catalog that is selected and returns nil when no match is found' do
     test_options = Options.new("Rims", 1000)
-    test_options.find_by_name("Mims").should eq (false)
+    Options.find_by_name("Mims").should eq (false)
+  end
+
+  it 'removes any option that has alredy been selected from list' do
+    test_options = Options.new("Rims", 1000)
+    another_option = Options.new("Spoiler", 500)
+    Options.delete(test_options)
+    Options.catalog.should eq [another_option]
   end
 end
 
