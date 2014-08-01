@@ -1,5 +1,10 @@
 class Options
   @@catalog = [] #class variable
+
+  def Options.clear
+    @@catalog = []
+  end
+
   def initialize(name, price)
     @name = name
     @price = price
@@ -21,9 +26,18 @@ class Options
   def price
     @price
   end
+
+  def find_by_name(input)
+    Options.catalog.each do |option|
+      if input == option.name
+        return option
+      end
+    end
+    false
+  end
 end
 
-rims = Options.new("Rims", 1000)
+rims = Options.new("Rims", 1000) #instance of the class of Options
 sunroof = Options.new("Sunroof", 500)
 spoiler = Options.new("Spoiler", 250)
 stereo = Options.new("Premium Stereo", 1500)

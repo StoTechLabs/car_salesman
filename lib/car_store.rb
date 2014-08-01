@@ -1,7 +1,12 @@
 class Vehicle
   @@warehouse = [] #class variable
+
+  def Vehicle.clear
+    @@warehouse = []
+  end
+
   def initialize(make, model, year, price)
-    @make = make
+    @make = make #instance variable
     @model = model
     @year = year
     @price = price
@@ -16,7 +21,7 @@ class Vehicle
     @@warehouse << self
   end
 
-  def make
+  def make #accessor method
     @make
   end
 

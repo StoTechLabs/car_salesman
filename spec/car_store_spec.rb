@@ -3,6 +3,10 @@ require 'car_store'
 require 'car_options'
 
 describe Vehicle do
+  before do
+    Vehicle.clear
+  end
+
   it 'initializes a Vehicle class with its properties' do
     test_vehicle = Vehicle.new("Toyota","Prius","2014","23999")
     test_vehicle.should be_an_instance_of Vehicle
@@ -20,6 +24,10 @@ describe Vehicle do
 end
 
 describe Options do
+  before do
+    Options.clear
+  end
+
   it 'initializes a Options class with its properties' do
     test_options = Options.new("Rims", 1000)
     test_options.should be_an_instance_of Options
@@ -34,4 +42,15 @@ describe Options do
     test_options = Options.new("Rims", 1000)
     Options.catalog[0].should be_an_instance_of Options
   end
+
+  it 'finds the option in the catalog that is selected and returns that option' do
+    test_options = Options.new("Rims", 1000)
+    test_options.find_by_name("Rims").should eq test_options
+  end
+
+  it 'finds the option in the catalog that is selected and returns nil when no match is found' do
+    test_options = Options.new("Rims", 1000)
+    test_options.find_by_name("Mims").should eq (false)
+  end
 end
+
