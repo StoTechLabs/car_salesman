@@ -13,4 +13,4 @@ Version: 1.0.0
 This program will allow the user to select from a list of cars and choose the model, make and features. Once this has been done the user will receive the total cost of the car.
 
 
-Copyright © 2014
+License: MIT
